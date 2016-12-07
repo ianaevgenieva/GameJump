@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+<link type="text/css" rel="stylesheet" href="css/reset.css">
+<link type="text/css" rel = "stylesheet" href="css/style.css">
+</head>
+
+<body>
+<div id=element></div>
+<div id = "first"></div>
+<div id ="second"></div>
+<div id ="third"></div>
+
+<table>
+	<tr>
+		<td>Life:</td>
+		<td>Score:</td>
+	</tr>
+	<tr>
+	    <td id=life>3</td>
+	    <td id=score>0</td>
+	</tr>
+	
+</table>
+<p id=win>Win!!!!!!!!!!</p>
+<p id=gameOver>Game Over!!!!!!!!!!</p>
+</body>
+<script>
+$( document ).ready(function() {
+	 var upTrue =false;
+	 var  midleTrue = false;
+	 var  downTrue = false;
+	 var life = 3;
+	 var score = 0;
+	 var x = 1;
+	
+	$("html").on("keydown",function(e){
+		if (e.keyCode == 81) {
+			midleTrue = true;
+			$("#element").animate({
+				bottom:"180px",
+				width:"150px",
+				height:"25px"
+			},70);	
+		}
+				if (e.keyCode == 87) {
+					upTrue = true;
+					$("#element").animate({
+						bottom:"360px",
+						width:"150px",
+						height:"60px"
+					},70);	
+				}
+				
+				if (e.keyCode == 69){
+					downTrue = true;
+					$("#element").animate({
+						bottom: "0px",
+						width:"220px",
+						height:"10px"
+					},70);
+				} 
+			});
+	$("html").on("keyup",function(e){
+				if (e.keyCode == 81) {
+					midleTrue = false;
+				}
+				if (e.keyCode == 87) {
+					upTrue = false;
+				}
+	
+				if (e.keyCode == 69){
+					downTrue = false;
+				} 
+			});
+	
+		function mooveEnemy(){
+			
+		 		if ($("#first").css("left") == "0px") {
+		 			$("#first").animate({
+		 				left:"950px"
+		 			},5000);
+		 		} 
+		 		if ($("#first").css("left")== "950px"){
+		 			$("#first").css("left","0px");
+		 			$("first").animate({
+		 				left:"950px"
+		 			},50);
+		 			
+		 		}
+		 	
+			 		if ($("#second").css("left") == "0px") {
+			 			$("#second").animate({
+			 				left:"950px"
+			 			},4300);
+			 		} 
+			 		if ($("#second").css("left")== "950px"){
+			 			$("#second").css("left","0px");
+			 			$("second").animate({
+			 				left:"950px"
+			 			},50);
+			 			
+			 		}
+		     }
+	function isJump (){
+		if  (midleTrue == true){
+			if (((parseInt($("#element").css('left'))-parseInt($("#first").css('left')))<200) &&
+			    ((parseInt($("#element").css('left'))-parseInt($("#first").css('left')))>40)) {
+				
+					score++;
+					midleTrue = false;
+					$("#score").text(score);
+			}
+		
+			if ((parseInt($("#element").css('left'))-parseInt($("#first").css('left')))<40){
+					life --;
+					midleTrue = false;
+					$("#life").text(life);
+			}
+		}
+		if  (upTrue == true){
+			if (((parseInt($("#element").css('left'))-parseInt($("#second").css('left')))<200) &&
+			    ((parseInt($("#element").css('left'))-parseInt($("#second").css('left')))>40)) {
+				
+					score++;
+					upTrue = false;
+					$("#score").text(score);
+			}
+		
+			if ((parseInt($("#element").css('left'))-parseInt($("#second").css('left')))<40){
+					life --;
+				    upTrue = false;
+					$("#life").text(life);
+			}
+		}
+	}
+		function game(){
+			 mooveEnemy();
+			 isJump();
+			if ((score == 5) && (life >=1)){
+				$("#win").css("display","block");
+				return;
+			}
+			if ((score <5)&& (life < 1)){
+				$("#gameOver").css("display","block");
+				return;
+			} 
+			 requestAnimationFrame(game);
+			}
+		requestAnimationFrame(game);
+});
+</script>
+</html>

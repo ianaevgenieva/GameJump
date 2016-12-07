@@ -1,0 +1,59 @@
+@CHARSET "ISO-8859-1";
+
+#element {
+	position: absolute;
+	width: 200px;
+	height: 30px;
+	background-color: red;
+	left: 800px;
+	border-radius: 10%;
+	bottom: 0px;
+}
+#win {
+	margin-left: 40%;
+	margin-top: 10%;
+	font-size: 50px;
+	color: white;
+	display:none;
+}
+#gameOver {
+	margin-left: 40%;
+	margin-top: 15%;
+	font-size: 50px;
+	color: white;
+	display:none;
+}
+
+#first {
+	bottom: 70px;
+	position: absolute;
+	width: 60px;
+	height: 80px;
+	left: 0px;
+	background-color: blue;
+	border-radius: 50%;
+	opacity: 0.3;
+}
+#second {
+	bottom: 250px;
+	position: absolute;
+	width: 60px;
+	height: 80px;
+	left: 0px;
+	background-color: blue;
+	border-radius: 50%;
+	margin-top: 30px;
+	opacity:0.4;
+}
+
+table {
+  text-align:center;
+  color: white;
+  font-size:30px;
+  margin:auto;
+  padding:20px 20px;
+}
+body {
+	background-image:url("../image/sky-06.jpg");
+	
+}
